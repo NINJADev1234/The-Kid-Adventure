@@ -2,9 +2,6 @@
 class SpriteKind:
     Finish = SpriteKind.create()
     Pet = SpriteKind.create()
-@namespace
-class StatusBarKind:
-    Lv = StatusBarKind.create()
 
 def on_overlap_tile(sprite, location):
     tiles.set_tile_at(location, assets.tile("""
@@ -19,82 +16,7 @@ scene.on_overlap_tile(SpriteKind.player,
     """),
     on_overlap_tile)
 
-def on_overlap_tile2(sprite2, location2):
-    info.change_life_by(-1)
-    music.knock.play()
-    tiles.place_on_random_tile(Kid, assets.tile("""
-        myTile1
-    """))
-scene.on_overlap_tile(SpriteKind.player,
-    assets.tile("""
-        Spike
-    """),
-    on_overlap_tile2)
-
-def on_overlap_tile3(sprite3, location3):
-    info.change_life_by(-1)
-    music.knock.play()
-    Kid.set_position(10, 113)
-scene.on_overlap_tile(SpriteKind.player, sprites.builtin.coral5, on_overlap_tile3)
-
-def on_b_pressed():
-    Kid.set_position(10, 113)
-controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
-
-def on_a_pressed():
-    Kid.ay = 500
-    Kid.vy = -300
-controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
-
-def on_overlap_tile4(sprite4, location4):
-    info.change_life_by(-1)
-    music.knock.play_until_done()
-    tiles.place_on_random_tile(Kid, sprites.builtin.field0)
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.hazard_lava0,
-    on_overlap_tile4)
-
-def on_overlap_tile5(sprite5, location5):
-    music.play_melody("C D E F G - - C5 ", 120)
-    game.show_long_text("Good job!", DialogLayout.BOTTOM)
-    game.show_long_text("NEW LEVEL UNLOCKED", DialogLayout.BOTTOM)
-    tiles.set_tilemap(tilemap("""
-        level3
-    """))
-    tiles.place_on_random_tile(Kid, sprites.dungeon.collectible_insignia)
-scene.on_overlap_tile(SpriteKind.player,
-    assets.tile("""
-        myTile3
-    """),
-    on_overlap_tile5)
-
-def on_overlap_tile6(sprite6, location6):
-    game.over(True, effects.confetti)
-scene.on_overlap_tile(SpriteKind.player, sprites.builtin.crowd4, on_overlap_tile6)
-
-def on_overlap_tile7(sprite7, location7):
-    game.over(True, effects.confetti)
-scene.on_overlap_tile(SpriteKind.player, sprites.builtin.crowd7, on_overlap_tile7)
-
-def on_overlap_tile8(sprite8, location8):
-    music.play_melody("C5 B G A - - B C5 ", 120)
-    game.show_long_text("New level unlocked!", DialogLayout.BOTTOM)
-    tiles.set_tilemap(tilemap("""
-        level4
-    """))
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.green_outer_north2,
-    on_overlap_tile8)
-
-def on_overlap_tile9(sprite9, location9):
-    info.change_life_by(-1)
-    music.knock.play_until_done()
-    Kid.set_position(10, 113)
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.swamp.swamp_tile13,
-    on_overlap_tile9)
-
-def on_overlap_tile10(sprite10, location10):
+def on_overlap_tile2(sprite10, location10):
     game.set_dialog_frame(img("""
         .....cccccccccccccc.....
                 ...cbd111111111111dbc...
@@ -253,34 +175,74 @@ def on_overlap_tile10(sprite10, location10):
     tiles.place_on_tile(Kid, tiles.get_tile_location(2, 6))
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.chest_closed,
-    on_overlap_tile10)
+    on_overlap_tile2)
 
-def on_overlap_tile11(sprite11, location11):
+def on_overlap_tile3(sprite5, location5):
+    music.play_melody("C D E F G - - C5 ", 120)
+    game.show_long_text("Good job!", DialogLayout.BOTTOM)
+    game.show_long_text("NEW LEVEL UNLOCKED", DialogLayout.BOTTOM)
+    tiles.set_tilemap(tilemap("""
+        level3
+    """))
+    tiles.place_on_random_tile(Kid, sprites.dungeon.collectible_insignia)
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        myTile3
+    """),
+    on_overlap_tile3)
+
+def on_b_pressed():
+    Kid.set_position(10, 113)
+controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
+
+def on_overlap_tile4(sprite9, location9):
     info.change_life_by(-1)
-    music.knock.play_until_done()
+    music.small_crash.play_until_done()
+    Kid.set_position(10, 113)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.swamp.swamp_tile13,
+    on_overlap_tile4)
+
+def on_overlap_tile5(sprite7, location7):
+    game.over(True, effects.confetti)
+scene.on_overlap_tile(SpriteKind.player, sprites.builtin.crowd7, on_overlap_tile5)
+
+def on_overlap_tile6(sprite2, location2):
+    info.change_life_by(-1)
+    music.small_crash.play()
+    tiles.place_on_random_tile(Kid, assets.tile("""
+        myTile1
+    """))
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        Spike
+    """),
+    on_overlap_tile6)
+
+def on_a_pressed():
+    Kid.ay = 500
+    Kid.vy = -300
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
+
+def on_overlap_tile7(sprite8, location8):
+    music.play_melody("C5 B G A - - B C5 ", 120)
+    game.show_long_text("New level unlocked!", DialogLayout.BOTTOM)
+    tiles.set_tilemap(tilemap("""
+        level4
+    """))
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_outer_north2,
+    on_overlap_tile7)
+
+def on_overlap_tile8(sprite11, location11):
+    info.change_life_by(-1)
+    music.small_crash.play_until_done()
     tiles.place_on_random_tile(Kid, sprites.builtin.field0)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.hazard_lava1,
-    on_overlap_tile11)
+    on_overlap_tile8)
 
-def on_status_reached_comparison_eq_type_fixed(status):
-    global Petty
-    statusbar.value = 0
-    statusbar.max = 65
-    statusbar.set_label("Lv. 2")
-    Petty = sprites.create(assets.image("""
-        Petty the cat
-    """), SpriteKind.Pet)
-    Petty.follow(Kid)
-    Petty.set_position(0, 0)
-    Petty.say_text("Meow!")
-statusbars.on_status_reached(StatusBarKind.Lv,
-    statusbars.StatusComparison.EQ,
-    statusbars.ComparisonType.FIXED,
-    50,
-    on_status_reached_comparison_eq_type_fixed)
-
-def on_overlap_tile12(sprite12, location12):
+def on_overlap_tile9(sprite12, location12):
     tiles.replace_all_tiles(assets.tile("""
             myTile2
         """),
@@ -293,36 +255,41 @@ scene.on_overlap_tile(SpriteKind.player,
     assets.tile("""
         myTile2
     """),
-    on_overlap_tile12)
+    on_overlap_tile9)
+
+def on_overlap_tile10(sprite4, location4):
+    info.change_life_by(-1)
+    music.small_crash.play_until_done()
+    tiles.place_on_random_tile(Kid, sprites.builtin.field0)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.hazard_lava0,
+    on_overlap_tile10)
+
+def on_overlap_tile11(sprite6, location6):
+    game.over(True, effects.confetti)
+scene.on_overlap_tile(SpriteKind.player, sprites.builtin.crowd4, on_overlap_tile11)
 
 def on_life_zero():
     scene.camera_shake(100, 1000)
     game.over(False, effects.slash)
 info.on_life_zero(on_life_zero)
 
-def on_status_reached_comparison_eq_type_fixed2(status2):
-    statusbar.value = 0
-    statusbar.max = 100
-    statusbar.set_label("Lv. 3")
-statusbars.on_status_reached(StatusBarKind.Lv,
-    statusbars.StatusComparison.EQ,
-    statusbars.ComparisonType.FIXED,
-    65,
-    on_status_reached_comparison_eq_type_fixed2)
-
-def on_overlap_tile13(sprite13, location13):
+def on_overlap_tile12(sprite13, location13):
     music.ba_ding.play()
-    statusbar.value += 1
     info.change_score_by(1)
     tiles.set_tile_at(location13, assets.tile("""
         transparency16
     """))
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.collectible_red_crystal,
-    on_overlap_tile13)
+    on_overlap_tile12)
 
-Petty: Sprite = None
-statusbar: StatusBarSprite = None
+def on_overlap_tile13(sprite3, location3):
+    info.change_life_by(-1)
+    music.small_crash.play()
+    Kid.set_position(10, 113)
+scene.on_overlap_tile(SpriteKind.player, sprites.builtin.coral5, on_overlap_tile13)
+
 Kid: Sprite = None
 scene.set_background_image(assets.image("""
     Main screen
@@ -337,12 +304,6 @@ Kid = sprites.create(assets.image("""
     Kid
 """), SpriteKind.player)
 info.set_life(3)
-statusbar = statusbars.create(20, 4, StatusBarKind.Lv)
-statusbar.set_label("Lv.1")
-statusbar.value = 0
-statusbar.max = 50
-statusbar.set_color(7, 0)
-statusbar.attach_to_sprite(Kid)
 music.play_melody("E D G F B A C5 B ", 110)
 tiles.set_tilemap(tilemap("""
     l1

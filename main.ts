@@ -3,10 +3,6 @@ namespace SpriteKind {
     export const Pet = SpriteKind.create()
 }
 
-namespace StatusBarKind {
-    export const Lv = StatusBarKind.create()
-}
-
 scene.onOverlapTile(SpriteKind.Player, assets.tile`
         myTile0
     `, function on_overlap_tile(sprite: Sprite, location: tiles.Location) {
@@ -17,62 +13,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`
     pause(1000)
     Kid.sayText("Dammit", 1000, true)
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        Spike
-    `, function on_overlap_tile2(sprite2: Sprite, location2: tiles.Location) {
-    info.changeLifeBy(-1)
-    music.knock.play()
-    tiles.placeOnRandomTile(Kid, assets.tile`
-        myTile1
-    `)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.builtin.coral5, function on_overlap_tile3(sprite3: Sprite, location3: tiles.Location) {
-    info.changeLifeBy(-1)
-    music.knock.play()
-    Kid.setPosition(10, 113)
-})
-controller.B.onEvent(ControllerButtonEvent.Pressed, function on_b_pressed() {
-    Kid.setPosition(10, 113)
-})
-controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
-    Kid.ay = 500
-    Kid.vy = -300
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function on_overlap_tile4(sprite4: Sprite, location4: tiles.Location) {
-    info.changeLifeBy(-1)
-    music.knock.playUntilDone()
-    tiles.placeOnRandomTile(Kid, sprites.builtin.field0)
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`
-        myTile3
-    `, function on_overlap_tile5(sprite5: Sprite, location5: tiles.Location) {
-    music.playMelody("C D E F G - - C5 ", 120)
-    game.showLongText("Good job!", DialogLayout.Bottom)
-    game.showLongText("NEW LEVEL UNLOCKED", DialogLayout.Bottom)
-    tiles.setTilemap(tilemap`
-        level3
-    `)
-    tiles.placeOnRandomTile(Kid, sprites.dungeon.collectibleInsignia)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd4, function on_overlap_tile6(sprite6: Sprite, location6: tiles.Location) {
-    game.over(true, effects.confetti)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd7, function on_overlap_tile7(sprite7: Sprite, location7: tiles.Location) {
-    game.over(true, effects.confetti)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorth2, function on_overlap_tile8(sprite8: Sprite, location8: tiles.Location) {
-    music.playMelody("C5 B G A - - B C5 ", 120)
-    game.showLongText("New level unlocked!", DialogLayout.Bottom)
-    tiles.setTilemap(tilemap`
-        level4
-    `)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.swamp.swampTile13, function on_overlap_tile9(sprite9: Sprite, location9: tiles.Location) {
-    info.changeLifeBy(-1)
-    music.knock.playUntilDone()
-    Kid.setPosition(10, 113)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function on_overlap_tile10(sprite10: Sprite, location10: tiles.Location) {
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function on_overlap_tile2(sprite10: Sprite, location10: tiles.Location) {
     game.setDialogFrame(img`
         .....cccccccccccccc.....
                 ...cbd111111111111dbc...
@@ -230,26 +171,56 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function on_
     scene.cameraFollowSprite(Kid)
     tiles.placeOnTile(Kid, tiles.getTileLocation(2, 6))
 })
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function on_overlap_tile11(sprite11: Sprite, location11: tiles.Location) {
-    info.changeLifeBy(-1)
-    music.knock.playUntilDone()
-    tiles.placeOnRandomTile(Kid, sprites.builtin.field0)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        myTile3
+    `, function on_overlap_tile3(sprite5: Sprite, location5: tiles.Location) {
+    music.playMelody("C D E F G - - C5 ", 120)
+    game.showLongText("Good job!", DialogLayout.Bottom)
+    game.showLongText("NEW LEVEL UNLOCKED", DialogLayout.Bottom)
+    tiles.setTilemap(tilemap`
+        level3
+    `)
+    tiles.placeOnRandomTile(Kid, sprites.dungeon.collectibleInsignia)
 })
-statusbars.onStatusReached(StatusBarKind.Lv, statusbars.StatusComparison.EQ, statusbars.ComparisonType.Fixed, 50, function on_status_reached_comparison_eq_type_fixed(status: StatusBarSprite) {
-    
-    statusbar.value = 0
-    statusbar.max = 65
-    statusbar.setLabel("Lv. 2")
-    Petty = sprites.create(assets.image`
-        Petty the cat
-    `, SpriteKind.Pet)
-    Petty.follow(Kid)
-    Petty.setPosition(0, 0)
-    Petty.sayText("Meow!")
+controller.B.onEvent(ControllerButtonEvent.Pressed, function on_b_pressed() {
+    Kid.setPosition(10, 113)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.swamp.swampTile13, function on_overlap_tile4(sprite9: Sprite, location9: tiles.Location) {
+    info.changeLifeBy(-1)
+    music.smallCrash.playUntilDone()
+    Kid.setPosition(10, 113)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd7, function on_overlap_tile5(sprite7: Sprite, location7: tiles.Location) {
+    game.over(true, effects.confetti)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`
+        Spike
+    `, function on_overlap_tile6(sprite2: Sprite, location2: tiles.Location) {
+    info.changeLifeBy(-1)
+    music.smallCrash.play()
+    tiles.placeOnRandomTile(Kid, assets.tile`
+        myTile1
+    `)
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
+    Kid.ay = 500
+    Kid.vy = -300
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorth2, function on_overlap_tile7(sprite8: Sprite, location8: tiles.Location) {
+    music.playMelody("C5 B G A - - B C5 ", 120)
+    game.showLongText("New level unlocked!", DialogLayout.Bottom)
+    tiles.setTilemap(tilemap`
+        level4
+    `)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function on_overlap_tile8(sprite11: Sprite, location11: tiles.Location) {
+    info.changeLifeBy(-1)
+    music.smallCrash.playUntilDone()
+    tiles.placeOnRandomTile(Kid, sprites.builtin.field0)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`
         myTile2
-    `, function on_overlap_tile12(sprite12: Sprite, location12: tiles.Location) {
+    `, function on_overlap_tile9(sprite12: Sprite, location12: tiles.Location) {
     tiles.replaceAllTiles(assets.tile`
             myTile2
         `, assets.tile`
@@ -258,25 +229,30 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`
     Kid.sayText("Wait!", 1000, true)
     Kid.sayText("I don't think we should touch this", 1000, true)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function on_overlap_tile10(sprite4: Sprite, location4: tiles.Location) {
+    info.changeLifeBy(-1)
+    music.smallCrash.playUntilDone()
+    tiles.placeOnRandomTile(Kid, sprites.builtin.field0)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd4, function on_overlap_tile11(sprite6: Sprite, location6: tiles.Location) {
+    game.over(true, effects.confetti)
+})
 info.onLifeZero(function on_life_zero() {
     scene.cameraShake(100, 1000)
     game.over(false, effects.slash)
 })
-statusbars.onStatusReached(StatusBarKind.Lv, statusbars.StatusComparison.EQ, statusbars.ComparisonType.Fixed, 65, function on_status_reached_comparison_eq_type_fixed2(status2: StatusBarSprite) {
-    statusbar.value = 0
-    statusbar.max = 100
-    statusbar.setLabel("Lv. 3")
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function on_overlap_tile13(sprite13: Sprite, location13: tiles.Location) {
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function on_overlap_tile12(sprite13: Sprite, location13: tiles.Location) {
     music.baDing.play()
-    statusbar.value += 1
     info.changeScoreBy(1)
     tiles.setTileAt(location13, assets.tile`
         transparency16
     `)
 })
-let Petty : Sprite = null
-let statusbar : StatusBarSprite = null
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.coral5, function on_overlap_tile13(sprite3: Sprite, location3: tiles.Location) {
+    info.changeLifeBy(-1)
+    music.smallCrash.play()
+    Kid.setPosition(10, 113)
+})
 let Kid : Sprite = null
 scene.setBackgroundImage(assets.image`
     Main screen
@@ -291,12 +267,6 @@ Kid = sprites.create(assets.image`
     Kid
 `, SpriteKind.Player)
 info.setLife(3)
-statusbar = statusbars.create(20, 4, StatusBarKind.Lv)
-statusbar.setLabel("Lv.1")
-statusbar.value = 0
-statusbar.max = 50
-statusbar.setColor(7, 0)
-statusbar.attachToSprite(Kid)
 music.playMelody("E D G F B A C5 B ", 110)
 tiles.setTilemap(tilemap`
     l1
